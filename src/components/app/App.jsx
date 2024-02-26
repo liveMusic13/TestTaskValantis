@@ -99,7 +99,7 @@ const App = () => {
 			) : (
 				<>
 					<div className='block__recipes'>
-						{currentItems.map((elem, index) => {
+						{currentItems?.map((elem, index) => {
 							return (
 								<div key={elem.id + Math.random()} className='block__recipe'>
 									<span>{(currentPage - 1) * itemsPerPage + index + 1}. </span>
@@ -128,7 +128,11 @@ const App = () => {
 						</button>
 						<Pagination
 							itemsPerPage={itemsPerPage}
-							totalItems={items.result.length}
+							totalItems={
+								items && items.result && items.result.length
+									? items.result.length
+									: 0
+							}
 							paginate={paginate}
 							currentPage={currentPage}
 						/>
